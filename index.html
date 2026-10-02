@@ -675,7 +675,7 @@ async function save(rec){
   }
   if(CONFIG.SHEET_URL){
     try{ await fetch(CONFIG.SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(rec)});
-      msg("응답이 전송되었습니다. 입력하신 이메일로 결과 요약이 발송됩니다. 받은편지함에 없으면 스팸함을 확인해 주세요."); return; }catch(e){}
+      msg(TEST_MODE?"테스트 응답이 전송되었습니다. (테스트 모드: 결과 메일 없음·통계 제외)":"응답이 전송되었습니다. 입력하신 이메일로 결과 요약이 발송됩니다. 받은편지함에 없으면 스팸함을 확인해 주세요."); return; }catch(e){}
   }
   try{ const k="adi-local"; const a=JSON.parse(localStorage.getItem(k)||"[]"); a.push(rec); localStorage.setItem(k,JSON.stringify(a.slice(-20)));
     msg("서버 저장 경로가 설정되지 않아 이 기기에만 저장되었습니다. ‘결과 저장하기’로 결과를 보관해 두세요."); }
